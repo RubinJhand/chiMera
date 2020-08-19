@@ -94,3 +94,7 @@ Install Firebase
 ```
 npm i firebase --save-dev
 ```
+
+Created in Collaboration with:
+
+- !["Chris"](https://github.com/cjfelice/cuneiform)
