@@ -18,17 +18,21 @@
 
 ### Creating Unique Layout with Media
 
-- Entering Edit Area and Image Search
-- !["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/image-search.gif)
+#### Entering Edit Area and Image Search
 
-- Media Resizing
-- !["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/image-resize.gif)
+!["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/image-search.gif)
 
-- User Media Upload to Cloud
-- !["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/media-upload-resize.gif)
+#### Media Resizing
 
-- Saved Work
-- !["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/saved-panel.gif)
+!["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/image-resize.gif)
+
+#### User Media Upload to Cloud
+
+!["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/media-upload-resize.gif)
+
+#### Saved Work
+
+!["Creating"](https://github.com/RubinJhand/chiMera/blob/master/docs/saved-panel.gif)
 
 ## General Features
 
@@ -73,28 +77,6 @@ npm install
 - Google (video search)
 - Spotify (audio)
 
-### Firebase
-
-If you have already run `npm install` before this update, follow these instructions
-
-Install Firebase Tools
-
-```
-npm install -g firebase-tools
-```
-
-- if you get errors, try this instead
-
-```
-sudo npm install -g firebase-tools
-```
-
-Install Firebase
-
-```
-npm i firebase --save-dev
-```
-
-## Created in Collaboration with:
+# Created in Collaboration with:
 
 - [Chris](https://github.com/cjfelice/cuneiform)
