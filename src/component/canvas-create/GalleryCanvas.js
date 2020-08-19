@@ -1,13 +1,12 @@
-import React, { forwardRef, useState, useImperativeHandle } from "react";
+import React, { forwardRef, useState } from 'react';
 
-import "./App.scss";
-import "./react_resizable_styles.scss";
-import "./react_grid_styles.scss";
-import _ from "lodash";
-import Mediabox from "./Mediabox";
-import DragIndicatorIcon from "@material-ui/icons/DragIndicator";
-import CloseIcon from "@material-ui/icons/Close";
-import RGL, { Responsive, WidthProvider } from "react-grid-layout";
+import _ from 'lodash';
+import Mediabox from './Mediabox';
+import RGL, { WidthProvider } from 'react-grid-layout';
+
+import '../../App.scss';
+import './react_resizable_styles.scss';
+import './react_grid_styles.scss';
 
 const ReactGridLayout = WidthProvider(RGL);
 
@@ -32,15 +31,15 @@ const GalleryCanvas = forwardRef((props, ref) => {
               isDraggable: false,
               isResizable: false,
               maxH: 1000,
-              maxW: 1000,
+              maxW: 1000
             };
           }),
-          newCounter: mediaBox.newCounter,
+          newCounter: mediaBox.newCounter
         }
       : {
           items: [0].map(function (i, key, list) {
             return {
-              i: "n" + i.toString(),
+              i: 'n' + i.toString(),
               x: i * 2,
               y: 0,
               w: 8,
@@ -51,10 +50,10 @@ const GalleryCanvas = forwardRef((props, ref) => {
               maxH: 1000,
               maxW: 1000,
               minH: 1,
-              minW: 1,
+              minW: 1
             };
           }),
-          newCounter: 1,
+          newCounter: 1
         }
   );
 
@@ -64,17 +63,17 @@ const GalleryCanvas = forwardRef((props, ref) => {
     const newMediaObject = {
       mediaBox_id: id,
       mediaUrl: mediaUrl,
-      mediaType: mediaType,
+      mediaType: mediaType
     };
     setMediaInfo([...mediaInfo, newMediaObject]);
   };
 
   const createElement = (el) => {
     const removeStyle = {
-      position: "absolute",
-      right: "2px",
+      position: 'absolute',
+      right: '2px',
       top: 0,
-      cursor: "pointer",
+      cursor: 'pointer'
     };
     const i = el.i;
 
@@ -93,7 +92,7 @@ const GalleryCanvas = forwardRef((props, ref) => {
     <>
       <div>
         <ReactGridLayout
-          className="layout"
+          className='layout'
           cols={20}
           rowHeight={10}
           maxRows={31}

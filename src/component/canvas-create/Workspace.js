@@ -1,6 +1,8 @@
-import React, { forwardRef, useRef, useImperativeHandle } from "react";
-import "./Workspace.scss";
-import Canvas from "./Canvas";
+import React, { forwardRef, useRef, useImperativeHandle } from 'react';
+
+import Canvas from './Canvas';
+
+import './Workspace.scss';
 
 const Workspace = forwardRef((props, ref) => {
   const addref = useRef();
@@ -11,11 +13,11 @@ const Workspace = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     passMessage() {
       refPasser();
-    },
+    }
   }));
 
   return (
-    <div className="workspace">
+    <div className='workspace'>
       <Canvas
         ref={addref}
         mediaBox={props.mediaBox}

@@ -1,9 +1,10 @@
-$paper: #e0d8c9;
-$texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&family=Ibarra+Real+Nova&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comfortaa&family=Josefin+Sans:ital,wght@0,400;1,500&display=swap");
+$paper: #fff;
+$texture: url('https://www.transparenttextures.com/patterns/cardboard.png');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&family=Ibarra+Real+Nova&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comfortaa&family=Josefin+Sans:ital,wght@0,400;1,500&display=swap');
+
 .workspace {
   max-height: 650px;
   width: 400em;
@@ -44,26 +45,34 @@ $texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
   width: 400em;
   height: 700em;
   background-image: $texture;
-  background-color: #0e67a4;
+  background-color: #fff;
   margin-left: 130px;
   margin-bottom: 170px;
   margin-top: 40px;
   border-radius: 8px;
-  font-family: "Varela Round";
-  font-size: 50px;
+  font-family: 'Varela Round';
+  font-size: 49px;
   font-kerning: normal;
   position: float;
   z-index: 9;
-  color: white;
+  color: rgb(57, 76, 100);
+
   padding: 20px;
   padding-left: 40px;
+  padding-bottom: 15px;
+  padding-right: 200px;
   z-index: 3;
+}
+
+.landcard__start {
+  display: flex;
+  justify-content: space-between;
 }
 
 .chimera {
   max-height: 400px;
   position: absolute;
-  margin-left: 10px;
+  margin-left: 500px;
   top: 170px;
   z-index: 0;
 }
@@ -74,10 +83,9 @@ $texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
   width: 80%;
   height: 30px;
   background-image: $texture;
-  background-color: rgb(156, 111, 62);
-  font-family: "Raleway";
+  background-color: rgb(54, 51, 51);
+  font-family: 'Raleway';
   font-size: 20px;
-  align: center;
   font-kerning: normal;
   position: float;
   z-index: 9;
@@ -97,9 +105,8 @@ $texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
   height: 30px;
   background-image: $texture;
   background-color: rgb(156, 111, 62);
-  font-family: "Raleway";
+  font-family: 'Raleway';
   font-size: 20px;
-  align: center;
   font-kerning: normal;
   position: float;
   z-index: 9;

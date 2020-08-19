@@ -3,84 +3,14 @@
 }
 @import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
 
-.card {
-  font-family: Varela;
-}
 .panels {
   max-width: 335px;
-  // max-height: 442.15;
-  // border: 2px;
+  max-height: 442.15;
+  border: 2px;
 
-  // margin-bottom: 45px;
-  // margin-right: 10px;
-
-  // box-sizing: border-box;
-  // padding: 20px;
-  // background-color: #7699b3;
-  // background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
-}
-
-.panels_canvis {
-  display: flex;
-  overflow-y: hidden;
-  overflow-x: scroll;
-}
-.panels_canvi {
-  object-fit: contain;
-  min-width: 345px;
-  height: 100%;
-  // max-height: 30%;
-  margin: 0;
-  transition: transform 450ms;
-}
-
-.panels_header {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-}
-
-.card-grid-display {
-  height: 100%;
-  overflow: scroll;
-}
-
-.panels_title {
-  padding: 20px;
-}
-.panels_user {
-  display: flex;
-  padding: 0 60px, 0, 30px;
-  background-color: #7699b3;
-  background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
-}
-
-.panels_user::-webkit-scrollbar {
-  display: none;
-}
-
-.panels_media {
-  object-fit: contain;
-  width: 100%;
-  max-height: 250px;
+  margin-bottom: 45px;
   margin-right: 10px;
-  transition: transform 450ms;
-}
 
-.panels_user:hover {
-  transform: scale(1.2);
-  opacity: 1;
-}
-
-.panels__inputRemark {
-  flex: 1;
-}
-
-.panel__remarkButton {
-  flex: 0;
-}
-
-Grid {
-  color: #7699b3;
-  background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+  box-sizing: border-box;
+  padding: 20px;
 }

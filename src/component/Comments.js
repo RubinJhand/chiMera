@@ -3,21 +3,16 @@ import React, { useState, useEffect, forwardRef } from 'react';
 import firebase from 'firebase';
 import { db } from '../config/firebase';
 
-import MediaStorage from './MediaStorage';
+import { Button, Input } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
-import { Button, Input, Modal } from '@material-ui/core';
-
-// import Comments from './Comments';
 import './Panels.scss';
 
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import { useN01TextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/n01';
-import { CardActionArea } from '@material-ui/core';
+
 import FlipMove from 'react-flip-move';
 
 const Comments = forwardRef((props, ref) => {
@@ -84,10 +79,7 @@ const Comments = forwardRef((props, ref) => {
 
   return (
     <>
-      <CardContent
-        ref={ref}
-        // style={{ height: 250, maxHeight: 250, overflow: "auto" }}
-      >
+      <CardContent ref={ref}>
         <Divider />
 
         <form className='comments__form'>

@@ -1,14 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
+import firebase from 'firebase';
 
-import Workspace from "./Workspace";
-import Canvas from "./Canvas";
-import DatabaseUpload from "./component/DatabaseUpload";
-import Button from "@material-ui/core/Button";
-import firebase from "firebase";
+import DatabaseUpload from '../DatabaseUpload';
+import Workspace from './Workspace';
 
-import "./Workspace.scss";
+import './Workspace.scss';
 
-import AddIcon from "@material-ui/icons/Add";
+import AddIcon from '@material-ui/icons/Add';
 
 function Workarea(props) {
   const user = firebase.auth().currentUser;
@@ -17,31 +15,31 @@ function Workarea(props) {
 
   return (
     <div>
-      <div className="toolbar">
+      <div className='toolbar'>
         <div
           style={{
-            color: "white",
+            color: 'white',
             marginLeft: 5,
             marginRight: 10,
             marginTop: 4,
-            fontSize: 18,
+            fontSize: 18
           }}
         >
           Click or Drag to add Content to the Canvas
         </div>
         <div
           onClick={() => refPass.current.passMessage()}
-          className="droppable-element"
+          className='droppable-element'
           draggable={true}
-          unselectable="on"
-          onDragStart={(e) => e.dataTransfer.setData("text/plain", "")}
+          unselectable='on'
+          onDragStart={(e) => e.dataTransfer.setData('text/plain', '')}
         >
           <AddIcon
             style={{
-              color: "white",
-              fontSize: "30px",
-              cursor: "pointer",
-              marginRight: 20,
+              color: 'white',
+              fontSize: '30px',
+              cursor: 'pointer',
+              marginRight: 20
             }}
           />
         </div>
@@ -51,7 +49,7 @@ function Workarea(props) {
           <div style={{ marginRight: 0 }}>Sign in to Save your work</div>
         ) : (
           <DatabaseUpload
-            className="save"
+            className='save'
             createGallery={props.createGallery}
             setMode={props.setMode}
             mode={props.mode}

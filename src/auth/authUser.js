@@ -1,13 +1,15 @@
-import React, { useState, useEffect, Fragment } from "react";
-import firebase from "firebase";
-import { authorize } from "../config/firebase";
+import React, { useState, useEffect } from 'react';
 
-import Modal from "@material-ui/core/Modal";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Input } from "@material-ui/core";
-import Title from "../Title";
-// import MediaStorage from '../component/MediaStorage';
-import "./authUser.css";
+import firebase from 'firebase';
+import { authorize } from '../config/firebase';
+
+import Title from '../component/Title';
+
+import './authUser.css';
+
+import Modal from '@material-ui/core/Modal';
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, Input } from '@material-ui/core';
 
 function UserAuth(props) {
   function getModalStyle() {
@@ -16,28 +18,28 @@ function UserAuth(props) {
     return {
       top: `${top}%`,
       left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
+      transform: `translate(-${top}%, -${left}%)`
     };
   }
 
   const useStyles = makeStyles((theme) => ({
     paper: {
-      position: "absolute",
+      position: 'absolute',
       width: 400,
       backgroundColor: theme.palette.background.paper,
-      border: "2px solid #000",
+      border: '2px solid #000',
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
+      padding: theme.spacing(2, 4, 3)
+    }
   }));
 
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
   const [open, setOpen] = useState(false);
   const [signIn, setSignIn] = useState(false);
-  const [username, setUserName] = useState(props.userName || "");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUserName] = useState(props.userName || '');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -60,13 +62,13 @@ function UserAuth(props) {
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
         return authUser.user.updateProfile({
-          displayName: username,
+          displayName: username
         });
       })
       .catch((error) => alert(error.message));
 
     setOpen(false);
-    props.menuSelect("HOME");
+    props.menuSelect('HOME');
   };
 
   const enterApp = (event) => {
@@ -75,35 +77,35 @@ function UserAuth(props) {
       .signInWithEmailAndPassword(email, password)
       .catch((error) => alert(error.message));
     setSignIn(false);
-    props.menuSelect("HOME");
+    props.menuSelect('HOME');
   };
 
   return (
     <div>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <form className="chimera__signup">
-            <Title text="chiMera" />
+          <form className='chimera__signup'>
+            <Title text='chiMera' />
 
             <Input
-              placeholder="username"
-              type="text"
+              placeholder='username'
+              type='text'
               value={username}
               onChange={(e) => setUserName(e.target.value)}
             />
             <Input
-              placeholder="email"
-              type="text"
+              placeholder='email'
+              type='text'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
-              placeholder="password"
-              type="password"
+              placeholder='password'
+              type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={signUp}>
+            <Button type='submit' onClick={signUp}>
               Signup
             </Button>
           </form>
@@ -112,22 +114,22 @@ function UserAuth(props) {
 
       <Modal open={signIn} onClose={() => setSignIn(false)}>
         <div style={modalStyle} className={classes.paper}>
-          <form className="chimera__signup">
-            <Title text="chiMera" />
+          <form className='chimera__signup'>
+            <Title text='chiMera' />
 
             <Input
-              placeholder="email"
-              type="text"
+              placeholder='email'
+              type='text'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input
-              placeholder="password"
-              type="password"
+              placeholder='password'
+              type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" onClick={enterApp}>
+            <Button type='submit' onClick={enterApp}>
               Sign In
             </Button>
           </form>
@@ -138,20 +140,20 @@ function UserAuth(props) {
         <>
           <Button
             onClick={() => authorize.signOut()}
-            style={{ color: "white", marginLeft: 14, align: "center" }}
+            style={{ color: 'black', marginLeft: 14, align: 'center' }}
           >
             {firebase.auth().currentUser.displayName}
           </Button>
         </>
       ) : (
-        <div className="chimera__loginContainer">
+        <div className='chimera__loginContainer'>
           <Button
-            style={{ color: "white", marginLeft: 14 }}
+            style={{ color: 'black', marginLeft: 14 }}
             onClick={() => setSignIn(true)}
           >
             Sign In
           </Button>
-          <Button style={{ color: "white" }} onClick={() => setOpen(true)}>
+          <Button style={{ color: 'black' }} onClick={() => setOpen(true)}>
             Register
           </Button>
         </div>

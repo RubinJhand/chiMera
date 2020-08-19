@@ -1,54 +1,41 @@
-import React, { useState, useEffect, Fragment } from "react";
-import firebase from "firebase";
+import React, { useState } from 'react';
+import firebase from 'firebase';
 
-import PanelMedia from "./PanelMedia";
-import PanelsHeader from "./PanelsHeader";
-import Comments from "./Comments";
-import DeletePanel from "./DeletePanel";
-import Row from "../Row";
+import PanelMedia from './PanelMedia';
+import PanelsHeader from './PanelsHeader';
+import Comments from './Comments';
 
-import "./Panels.scss";
-import "../Workspace.scss";
+import './Panels.scss';
+import './canvas-create/Workspace.scss';
 
 import {
   CardContent,
   GridList,
-  Card,
-  Container,
   Box,
-  CardMedia,
-  CardHeader,
-  Avatar,
   GridListTile,
-  Button,
   Menu,
   CardActions,
-  Collapse,
-  MenuItem,
   IconButton,
-  Typography,
-  Paper,
-} from "@material-ui/core";
+  Paper
+} from '@material-ui/core';
 
-import { makeStyles, StylesProvider } from "@material-ui/core/styles";
-import clsx from "clsx";
+import { makeStyles, StylesProvider } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
-import { red } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import PersonIcon from "@material-ui/icons/Person";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import ShareIcon from "@material-ui/icons/Share";
-import FavoriteBorderIcon from "@material-ui/icons/Favorite";
-import CommentIcon from "@material-ui/icons/Comment";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import VisibilityIcon from "@material-ui/icons/Visibility";
+import { red } from '@material-ui/core/colors';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import PersonIcon from '@material-ui/icons/Person';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ShareIcon from '@material-ui/icons/Share';
+import FavoriteBorderIcon from '@material-ui/icons/Favorite';
+import CommentIcon from '@material-ui/icons/Comment';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
-import TextInfoContent from "@mui-treasury/components/content/textInfo";
-import { useN01TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n01";
-import MediaStorage from "./MediaStorage";
+import TextInfoContent from '@mui-treasury/components/content/textInfo';
+import { useN01TextInfoContentStyles } from '@mui-treasury/styles/textInfoContent/n01';
 
 function Panels(props) {
-  // title = name
   const {
     title,
     description,
@@ -58,73 +45,51 @@ function Panels(props) {
     mediaCounter,
     panel_id,
     username,
-    id,
+    id
   } = props;
 
   const user = firebase.auth().currentUser;
 
-  if (user) {
-    // User is signed in.
-  } else {
-    // No user is signed in.
-  }
-
   const useStyles = makeStyles((theme) => ({
-    root: {
-      // minWidth: 345,
-      minWidth: 345,
-      // maxHeight: 442,
-      // minHeight: 442,
-      // color: "#fff",
-      // padding: "10",
-      backgroundColor: "white",
-      backgroundImage: `url("https://www.transparenttextures.com/patterns/rice-paper-3.png")`,
-    },
-    media: {
-      height: 250,
-      width: "100%",
-      maxHeight: 250,
-      objectFit: "cover",
-    },
     expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-      }),
+      transform: 'rotate(0deg)',
+      marginLeft: 'auto',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest
+      })
     },
     expandOpen: {
-      transform: "rotate(180deg)",
+      transform: 'rotate(180deg)'
     },
     avatar: {
-      backgroundColor: red[500],
+      backgroundColor: red[500]
     },
     like: {
-      color: "#FC766AFF",
+      color: '#FC766AFF'
     },
     root_grid: {
-      flexGrow: 1,
+      flexGrow: 1
     },
     paper: {
-      color: theme.palette.text.secondary,
+      color: theme.palette.text.secondary
     },
     gridlist__root: {
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-around",
-      overflow: "hidden",
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden'
     },
     gridList: {
-      flexWrap: "nowrap",
-      transform: "translateZ(0)",
+      flexWrap: 'nowrap',
+      transform: 'translateZ(0)'
     },
     gridlist__title: {
-      color: theme.palette.primary.light,
+      color: theme.palette.primary.light
     },
     gridlist__titleBar: {
       background:
-        "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)",
-    },
+        'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
+    }
   }));
 
   //Cards material ui
@@ -148,177 +113,121 @@ function Panels(props) {
   };
 
   return (
-    <Box container>
-      <Card className={classes.root}>
-        <div
-          onClick={() => {
-            let name = "";
-            user && (name = user.displayName);
-            if (name === username) {
-              props.setMode("LOADINGCANVAS");
-              setTimeout(() => {
-                props.setMode("CREATEDCANVAS");
-              }, 3000);
-              props.createGallery(
-                media,
-                mediaBox,
-                title,
-                username,
-                panel_id,
-                mediaCounter
-              );
-              window.scrollTo({
-                top: 45,
-                left: 0,
-                behavior: "smooth",
-              });
-            } else {
-              props.openModal(media, mediaBox, title);
-            }
-            !user && props.openModal(media, mediaBox, title);
-          }}
-          style={{ cursor: "pointer" }}
+    <Box container className='panels'>
+      <Paper elevation={24}>
+        <GridList
+          cellHeight='auto'
+          rows={12}
+          cols={1}
+          className={classes.gridlist}
         >
-          <PanelsHeader username={username} title={title} time={time} />
-        </div>
-        <div className="card-grid-display">
-          <PanelMedia
-            media={media}
-            mediaBox={mediaBox}
-            mediaCounter={mediaCounter}
-          />
-        </div>
-        <div style={{ backgroundColor: "#5B84B1FF", color: "white" }}>
-          <CardContent>
-            <Typography>{description}</Typography>
-          </CardContent>
-          <CardActions disableSpacing>
-            {!like ? (
-              <IconButton
-                aria-label="add to favorites"
-                onClick={(e) => setLike(true)}
-              >
-                <FavoriteIcon />
-              </IconButton>
-            ) : (
-              <IconButton
-                aria-label="add to favorites"
-                onClick={(e) => setLike(false)}
-              >
-                <FavoriteBorderIcon className={classes.like} />
-              </IconButton>
-            )}
-            <IconButton aria-label="share" onClick={() => alert(panel_id)}>
-              <ShareIcon style={{ color: "#f5ba55" }} />
-            </IconButton>
-            <div style={{ color: "white", marginLeft: 4, fontSize: 20 }}>
-              <Button size="small" variant="contained" color="primary">
-                <PersonIcon />
-                {username}
-              </Button>
+          <GridListTile
+            rows={2}
+            cols={1}
+            onClick={() => {
+              let name = '';
+              user && (name = user.displayName);
+              if (name === username) {
+                props.setMode('LOADINGCANVAS');
+                setTimeout(() => {
+                  props.setMode('CREATEDCANVAS');
+                }, 3000);
+                props.createGallery(
+                  media,
+                  mediaBox,
+                  title,
+                  username,
+                  panel_id,
+                  mediaCounter
+                );
+                window.scrollTo({
+                  top: 45,
+                  left: 0,
+                  behavior: 'smooth'
+                });
+              } else {
+                props.openModal(media, mediaBox, title);
+              }
+              !user && props.openModal(media, mediaBox, title);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <PanelsHeader username={username} title={username} time={time} />
+          </GridListTile>
+
+          <GridListTile rows={4} cols={1}>
+            <div className='card-grid-display'>
+              <PanelMedia
+                media={media}
+                mediaBox={mediaBox}
+                mediaCounter={mediaCounter}
+              />
             </div>
-            <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded,
-              })}
-              onClick={handleClick}
-              aria-expanded={expanded}
-              aria-label="show more"
-            >
-              <CommentIcon style={{ color: "#f5ba55" }} />
-            </IconButton>
-          </CardActions>
-        </div>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          {!user ? (
-            <h6>Sign In to Join Us!</h6>
-          ) : (
-            <Comments
-              key={panel_id}
-              username={username}
-              panel_id={panel_id}
-              key={id}
-            />
-          )}
-        </Menu>
-      </Card>
+          </GridListTile>
+
+          <GridListTile rows={4} cols={1}>
+            <CardContent>
+              <TextInfoContent
+                useStyles={useN01TextInfoContentStyles}
+                overline={''}
+                heading={title}
+                body={description}
+              />
+            </CardContent>
+          </GridListTile>
+
+          <GridListTile rows={2} cols={1}>
+            <CardActions disableSpacing>
+              {!like ? (
+                <IconButton
+                  aria-label='add to favorites'
+                  onClick={(e) => setLike(true)}
+                >
+                  <FavoriteIcon />
+                </IconButton>
+              ) : (
+                <IconButton
+                  aria-label='add to favorites'
+                  onClick={(e) => setLike(false)}
+                >
+                  <FavoriteBorderIcon className={classes.like} />
+                </IconButton>
+              )}
+
+              <IconButton
+                className={clsx(classes.expand, {
+                  [classes.expandOpen]: expanded
+                })}
+                onClick={handleClick}
+                aria-expanded={expanded}
+                aria-label='show more'
+              >
+                <CommentIcon style={{ color: '#f5ba55' }} />
+              </IconButton>
+            </CardActions>
+          </GridListTile>
+
+          <Menu
+            id='simple-menu'
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            {!user ? (
+              <h6>Sign In to Join Us!</h6>
+            ) : (
+              <Comments
+                key={panel_id}
+                username={username}
+                panel_id={panel_id}
+                key={id}
+              />
+            )}
+          </Menu>
+        </GridList>
+      </Paper>
     </Box>
-    // <GridListTile className="panels">
-    //   <Paper>
-    //     <GridList
-    //       cellHeight="auto"
-    //       rows={12}
-    //       cols={1}
-    //       className={classes.gridlist}
-    //     >
-    //       <GridListTile rows={2} cols={1}>
-    //         <PanelsHeader username={username} title={title} time={time} />
-    //       </GridListTile>
-
-    //       <GridListTile rows={4} cols={1}>
-
-    // </GridListTile>
-
-    // <GridListTile rows={3} cols={1}>
-    //   <CardContent>
-    //     <TextInfoContent
-    //       useStyles={useN01TextInfoContentStyles}
-    //       overline={""}
-    //       heading={title}
-    //       body={description}
-    //     />
-    //   </CardContent>
-    // </GridListTile>
-
-    // <GridListTile rows={2} cols={1}>
-    //   <CardActions disableSpacing>
-    //     {like ? (
-    //       <IconButton
-    //         aria-label="add to favorites"
-    //         onClick={(e) => setLike(false)}
-    //       >
-    //         <FavoriteIcon />
-    //       </IconButton>
-    //     ) : (
-    //       <IconButton
-    //         aria-label="add to favorites"
-    //         onClick={(e) => setLike(true)}
-    //       >
-    //         <FavoriteBorderIcon className={classes.like} />
-    //       </IconButton>
-    //     )}
-
-    //     <IconButton
-    //       className={clsx(classes.expand, {
-    //         [classes.expandOpen]: expanded,
-    //       })}
-    //       onClick={handleExpandClick}
-    //       aria-expanded={expanded}
-    //       aria-label="show more"
-    //     >
-    //       <ExpandMoreIcon />
-    //     </IconButton>
-    //   </CardActions>
-    // </GridListTile>
-
-    // <GridListTile rows={1} cols={1}>
-    //   <Collapse in={expanded} timeout="auto" unmountOnExit>
-    //     {!user ? (
-    //       <h6>Sign In to Join Us!</h6>
-    //     ) : (
-    //       <Comments username={username} panel_id={panel_id} key={id} />
-    //           )}
-    //         </Collapse>
-    //       </GridListTile>
-    //     </GridList>
-    //   </Paper>
-    // </GridListTile>
   );
 }
 

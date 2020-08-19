@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
 
 $paper: #e0d8c9;
-$texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
+$texture: url('https://www.transparenttextures.com/patterns/cardboard.png');
 
 * {
   margin: 0;
@@ -14,8 +14,8 @@ $texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
 }
 
 .App {
-  background-color: #7699b3;
-  background-image: url("https://www.transparenttextures.com/patterns/clean-gray-paper.png");
+  background-color: #fff;
+  // background-image: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
 }
 
 .header {
@@ -31,7 +31,7 @@ $texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
   height: 93%;
 }
 .title-header {
-  font-family: "Varela Round";
+  font-family: 'Varela Round';
   font-size: 35px;
   color: white;
   margin-left: 100px;
@@ -39,7 +39,7 @@ $texture: url("https://www.transparenttextures.com/patterns/cardboard.png");
   margin-bottom: 20px;
 }
 .titleContainer {
-  font-family: "Righteous", sans-serif;
+  font-family: 'Righteous', sans-serif;
   width: 30%;
   padding-right: 6%;
   margin-top: 6px;

@@ -1,80 +1,67 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { db } from "./config/firebase";
-
-import PresentCanvas from "./PresentCanvas";
-import { createMuiTheme } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Zoom from "@material-ui/core/Zoom";
-import GitHubIcon from "@material-ui/icons/GitHub";
+import { db } from './config/firebase';
 
 //Component files
-import Panels from "./component/Panels";
-import UserAuth from "./auth/authUser";
-import Navbar from "./Navbar";
-import Toolbar from "./Toolbar";
-import ReactLoading from "react-loading";
-import GalleryCanvas from "./GalleryCanvas";
-import MediaStorage from "./component/MediaStorage";
-import Row from "./Row";
-import Workspace from "./Workspace";
-import requests from "./requests";
-import Workarea from "./Workarea";
-import Landcard from "./Landcard";
-import Title from "./Title";
+import Navbar from './component/Navbar';
+import Toolbar from './component/canvas-create/Toolbar';
+import GalleryCanvas from './component/canvas-create/GalleryCanvas';
+import Row from './component/canvas-create/Row';
+import PresentCanvas from './component/canvas-create/PresentCanvas';
+import requests from './component/canvas-create/requests';
+import Workarea from './component/canvas-create/Workarea';
+import Landcard from './component/canvas-create/Landcard';
 
-import ImageRow from "./ImageRow";
+import './App.scss';
+import './component/Panels.scss';
+import './component/canvas-create/Workspace.scss';
+import 'rc-footer/assets/index.css';
 
-import "./App.scss";
-import "./component/Panels.scss";
-import "rc-footer/assets/index.css"; // import 'rc-footer/asssets/index.less';
-import Headroom from "react-headroom";
-import Footer from "rc-footer";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import "./Workspace.scss";
+import Headroom from 'react-headroom';
+import ReactLoading from 'react-loading';
+import Footer from 'rc-footer';
 
-import Cards from "./component/Cards";
-import { GridList, Box, IconButton } from "@material-ui/core";
-import { getThemeProps } from "@material-ui/styles";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { IconButton } from '@material-ui/core';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 function App() {
-  const [mode, setMode] = useState("HOME");
+  const [mode, setMode] = useState('HOME');
   const [panels, setPanels] = useState([]);
   const [media, setMedia] = useState([]);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [mediaBox, setMediaBox] = useState();
-  const [panelID, setPanelID] = useState("");
+  const [panelID, setPanelID] = useState('');
   const [openModal, setOpenModal] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState('');
   const [counter, setCounter] = useState();
-  const [userID, setUserID] = useState("");
-  const [trigger, setTrigger] = useState(false);
+
   const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     const unsubscribe = db
-      .collection("panels")
-      .orderBy("timestamp", "desc")
+      .collection('panels')
+      .orderBy('timestamp', 'desc')
       .onSnapshot((snapshot) => {
         setPanels(
           snapshot.docs.map((doc) => ({
             id: doc.id,
-            panel: doc.data(),
+            panel: doc.data()
           }))
         );
       });
     return () => {
-      unsubscribe(); //run the 'done' function (see done = db above)
+      unsubscribe();
     };
   }, []);
 
   const theme = createMuiTheme({
     typography: {
-      fontFamily: "Raleway",
+      fontFamily: 'Raleway'
     },
     overrides: {
-      MuiButton: {},
-    },
+      MuiButton: {}
+    }
   });
 
   const createModal = (media, mediaBox, title) => {
@@ -83,6 +70,7 @@ function App() {
     setTitle(title);
     setOpenModal(true);
   };
+
   const createGallery = (media, mediaBox, title, user, panelID, newCounter) => {
     setMedia(media);
     setPanelID(panelID);
@@ -91,11 +79,12 @@ function App() {
     setCounter(newCounter);
     setUserName(user);
   };
+
   return (
-    <div className="App">
+    <div className='App'>
       <MuiThemeProvider theme={theme}>
         <Headroom>
-          <div className="header">
+          <div className='header'>
             <Navbar
               setMode={setMode}
               userName={userName}
@@ -104,7 +93,7 @@ function App() {
             />
           </div>
         </Headroom>
-        {mode === "NEWCANVAS" && (
+        {mode === 'NEWCANVAS' && (
           <div>
             <Workarea
               createGallery={createGallery}
@@ -115,7 +104,7 @@ function App() {
             />
           </div>
         )}
-        {mode === "EDITCANVAS" && (
+        {mode === 'EDITCANVAS' && (
           <div>
             <Workarea
               createGallery={createGallery}
@@ -128,11 +117,11 @@ function App() {
             />
           </div>
         )}
-        {mode === "MYCANVASES" && (
+        {mode === 'MYCANVASES' && (
           <div>
-            <div className="title-header">My Canvases</div>
+            <div className='title-header'>My Canvases</div>
             <Row
-              title="Suggested Canvi"
+              title='Suggested Canvi'
               fetchUrl={requests.fetchTrending}
               panels={panels}
               openModal={createModal}
@@ -141,11 +130,11 @@ function App() {
             />
           </div>
         )}
-        {mode === "EXPLORECANVASES" && (
+        {mode === 'EXPLORECANVASES' && (
           <div>
-            <div className="title-header">Browse Canvases</div>
+            <div className='title-header'>Browse Canvases</div>
             <Row
-              title="Suggested Canvi"
+              title='Suggested Canvi'
               fetchUrl={requests.fetchTrending}
               panels={panels}
               openModal={createModal}
@@ -154,7 +143,7 @@ function App() {
             />
           </div>
         )}
-        {mode === "CREATEDCANVAS" && (
+        {mode === 'CREATEDCANVAS' && (
           <>
             <Toolbar
               canvasName={title}
@@ -164,11 +153,11 @@ function App() {
               panel_id={panelID}
               mode={mode}
             />
-            <div className="workspace">
+            <div className='workspace'>
               <GalleryCanvas media={media} mediaBox={mediaBox} />
             </div>
             <Row
-              title="Suggested Canvi"
+              title='Suggested Canvi'
               fetchUrl={requests.fetchTrending}
               panels={panels}
               openModal={createModal}
@@ -177,17 +166,17 @@ function App() {
             />
           </>
         )}
-        {mode === "HOME" && (
+        {mode === 'HOME' && (
           <>
             <div>
               <Landcard
-                getStarted={() => setMode("NEWCANVAS")}
+                getStarted={() => setMode('NEWCANVAS')}
                 setMedia={setMedia}
                 setMediaBox={setMediaBox}
               />
             </div>
             <Row
-              title="Suggested Canvi"
+              title='Suggested Canvi'
               fetchUrl={requests.fetchTrending}
               panels={panels}
               openModal={createModal}
@@ -196,21 +185,21 @@ function App() {
             />
           </>
         )}
-        {mode === "LOADINGCANVAS" && (
+        {mode === 'LOADINGCANVAS' && (
           <>
             <Toolbar canvasName={title} setMode={setMode} panelID={panelID} />
-            <div className="workspace" style={{ textAlign: "center" }}>
-              <div style={{ display: "inline-block", marginTop: 200 }}>
+            <div className='workspace' style={{ textAlign: 'center' }}>
+              <div style={{ display: 'inline-block', marginTop: 200 }}>
                 <ReactLoading
-                  type={"balls"}
-                  color={"#5B84B1FF"}
+                  type={'balls'}
+                  color={'#5B84B1FF'}
                   height={200}
                   width={200}
                 />
               </div>
             </div>
             <Row
-              title="Suggested Canvi"
+              title='Suggested Canvi'
               fetchUrl={requests.fetchTrending}
               panels={panels}
               openModal={createModal}
@@ -227,20 +216,20 @@ function App() {
         />
         <div style={{ height: 100 }}></div>
         <Footer
-          style={{ fontFamily: "Varela Round" }}
-          backgroundColor="transparent"
+          style={{ fontFamily: 'Varela Round' }}
+          backgroundColor='transparent'
           columns={[
             {
               icon: (
-                <IconButton style={{ color: "white" }}>
+                <IconButton style={{ color: 'white' }}>
                   <GitHubIcon />
                 </IconButton>
               ),
-              url: "https://github.com/cjfelice/cuneiform",
-              openExternal: true,
-            },
+              url: 'https://github.com/RubinJhand/chiMera',
+              openExternal: true
+            }
           ]}
-          bottom={`Made for the Lighthouse Bootcamp by Rubin Jhand & Christopher Smith`}
+          bottom={`Made by Rubin Jhand & Christopher Smith`}
         />
         ,
       </MuiThemeProvider>

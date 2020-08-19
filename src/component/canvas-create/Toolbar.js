@@ -1,36 +1,39 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import { IconButton } from "@material-ui/core";
-import ShareIcon from "@material-ui/icons/Share";
-import "./Workspace.scss";
-import DeletePanel from "./component/DeletePanel";
+import React from 'react';
+
+import DeletePanel from '../DeletePanel';
+
+import './Workspace.scss';
+
+import Button from '@material-ui/core/Button';
+import { IconButton } from '@material-ui/core';
+import ShareIcon from '@material-ui/icons/Share';
 
 function Toolbar(props) {
   return (
     <>
-      <div className="toolbar2">
+      <div className='toolbar2'>
         <div
           style={{
-            color: "white",
+            color: 'white',
             marginLeft: 20,
-            marginRight: "auto",
+            marginRight: 'auto',
             marginTop: 4,
             fontSize: 20,
-            fontStyle: "Bold",
+            fontStyle: 'Bold'
           }}
         >
           {props.canvasName}
         </div>
         <Button
-          variant="contained"
-          color="primary"
-          style={{ color: "white", marginRight: 20 }}
+          variant='contained'
+          color='primary'
+          style={{ color: 'white', marginRight: 20 }}
           onClick={() => {
-            props.setMode("EDITCANVAS");
+            props.setMode('EDITCANVAS');
           }}
         >
           EDIT
-        </Button>{" "}
+        </Button>{' '}
         <DeletePanel
           username={props.userName}
           panel_id={props.panel_id}
@@ -38,9 +41,9 @@ function Toolbar(props) {
           mode={props.mode}
         />
         <IconButton
-          variant="contained"
-          color="primary"
-          style={{ color: "white" }}
+          variant='contained'
+          color='primary'
+          style={{ color: 'white' }}
           onClick={() => alert(props.panel_id)}
         >
           <ShareIcon />

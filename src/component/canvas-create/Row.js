@@ -1,22 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import axios from './axios';
-import './Row.scss';
-import Panels from './component/Panels';
+import React from 'react';
 
-const base_url = 'https://image.tmdb.org/t/p/original/';
+import Panels from '../Panels';
+
+import './Row.scss';
 
 function Row(props) {
-  const [canvi, setCanvi] = useState([]);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const request = await axios.get(fetchUrl);
-  //     setCanvi(request.data.results);
-  //     return request;
-  //   }
-  //   fetchData();
-  // }, [fetchUrl]);
-
   const panels = props.panels;
 
   return (
